@@ -1,0 +1,737 @@
+html, body, * {
+    font-family: 'Inter', sans-serif !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Keyframes para animaciones */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 111, 60, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 111, 60, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 111, 60, 0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Panel lateral con imagen */
+.side-container {
+    flex: 1.2;
+    background-image: url(../imagenes/ASU-carruselMobile.webp);
+    background-size: cover;
+    background-position: center;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    min-width: 320px;
+    box-shadow: 1px 0 15px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: slideInLeft 0.8s ease-out;
+    border-radius: 0px 15px 15px 0px;
+    
+}
+
+.side-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+.side-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+    max-width: 400px;
+    animation: fadeIn 1.2s ease-out 0.3s both;
+}
+
+.side-content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    animation: fadeIn 1.5s ease-out 0.6s both;
+}
+
+.side-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    animation: fadeIn 1.8s ease-out 0.9s both;
+}
+
+.highlight {
+    color: #FF6F3C;
+    font-weight: 600;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    flex: 1;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    min-width: 350px;
+    animation: slideInRight 0.8s ease-out;
+}
+
+.logueo, .registro, .verificar {
+    width: 100%;
+    max-width: 320px;
+    animation: scaleIn 0.6s ease-out 0.4s both;
+}
+
+.verificar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logueo h2, .registro h2, .verificar h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FF6F3C;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+
+
+.subtitle {
+    color: #aaa;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Estilos para checkbox personalizado */
+.checkbox-group {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+}
+
+.checkmark {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    background-color: #2a2a2a;
+    border: 2px solid #333;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox-label:hover .checkmark {
+    border-color: #FF6F3C;
+    background-color: #2f2f2f;
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .checkmark {
+    background-color: #FF6F3C;
+    border-color: #FF6F3C;
+    transform: scale(1.1);
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+    animation: checkmark 0.3s ease-out;
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .checkmark::after {
+    display: block;
+}
+
+@keyframes checkmark {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -60%) rotate(45deg) scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -60%) rotate(45deg) scale(1);
+    }
+}
+
+.checkbox-label:hover {
+    color: #fff;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+input::placeholder {
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #FF6F3C;
+    box-shadow: 0 0 0 2px rgba(255, 111, 60, 0.2);
+    transform: translateY(-2px);
+    background: #2f2f2f;
+}
+
+input:focus::placeholder {
+    color: #999;
+}
+
+
+.input-group-codigo label{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+/* Estilo específico para el input de código de verificación */
+.codigo-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.codigo-input {
+    width: 40px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.codigo-input:focus {
+    animation: pulse 0.6s infinite;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: #FF6F3C;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(0);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover {
+    background: #e65c2f;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 111, 60, 0.3);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    animation: pulse 0.6s;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.register-link a {
+    color: #FF6F3C;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.register-link a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #FF6F3C;
+    transition: width 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.register-link a:hover::after {
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        overflow: auto;
+    }
+
+    input{
+        font-size: 1rem;
+        padding: 12px;
+        border-radius: 8px;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .input-group{
+        text-align: center;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-group label {
+        text-align: center;
+        margin-bottom: 6px;
+    }
+
+    .input-group-codigo {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        width: 80%;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    button{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+
+    .side-container {
+        display: none;
+    }
+    
+    
+    .form-container {
+        flex: 1;
+        padding: 20px;
+        min-width: auto;
+        background-image: url(../imagenes/ASU-carruselMobile.webp);
+        background-size: cover;
+        background-position: center;
+        border-radius: 0;
+        position: relative;
+    }
+    
+    .form-container::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(8px);
+        z-index: 1;
+        border-radius: 0;
+    }
+    
+    .logueo, .registro, .verificar {
+        max-width: 100%;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .logueo h2, .registro h2, .verificar h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+    }
+    
+    .input-group {
+        margin-bottom: 16px;
+    }
+    
+    .input-group label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    input {
+        padding: 14px 12px;
+        font-size: 16px;
+    }
+    
+    .codigo-input {
+        width: 35px;
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+    
+    .codigo-inputs {
+        gap: 8px;
+    }
+    
+    .btn-primary {
+        padding: 14px 20px;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+    
+    .btn-secondary {
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+    
+    .register-link {
+        font-size: 0.8rem;
+        margin-top: 15px;
+    }
+    
+    .checkbox-group {
+        justify-content: center;
+        align-items: center; /* Mejora la alineación vertical */
+        width: 100%;
+        max-width: 300px; /* Limita el ancho para mejor centrado */
+        margin: 0 auto; /* Centra el grupo horizontalmente */
+    }
+    
+    .checkbox-label {
+        font-size: 0.85rem;
+        justify-content: center; /* Asegura que el contenido interno esté centrado */
+        width: 100%; /* Hace que el label ocupe todo el ancho disponible */
+    }
+    
+    .checkmark {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        flex-shrink: 0; /* Evita que el checkbox se encoja */
+    }
+    
+    /* Modal responsive */
+    .modal-content {
+        width: 95%;
+        max-width: 350px;
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
+    .message-modal-content {
+        padding-top: 35px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.3rem;
+        padding-bottom: 10px;
+    }
+    
+    .modal-content p {
+        margin-bottom: 25px;
+        font-size: 0.9rem;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .modal-close {
+        font-size: 28px;
+        padding: 8px;
+    }
+    
+    /* Botón de cerrar responsive */
+    .close-btn {
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+    }
+}
+
+/* Estilos para la modal */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+    display: none;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    color: #fff;
+    animation: scaleIn 0.3s ease-out;
+}
+
+.modal-content h2{
+    text-align: center;
+}
+
+.message-modal-content {
+    padding-top: 40px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 10px;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #fff;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #FF6F3C;
+    font-size: 1.5rem;
+    padding-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 40px;
+    color: #e0e0e0;
+}
+
+#messageText {
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    margin-top: auto;
+    height: 42px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #555;
+}
+
+/* Estilo para el botón de cerrar en verificación */
+.close-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: none;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #fff;
+}
