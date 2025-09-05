@@ -92,7 +92,7 @@ body {
 /* Panel lateral con imagen */
 .side-container {
     flex: 1.2;
-    background-image: url(../imagenes/ASU-carruselMobile.webp);
+    background-image: url("./imagenes/ASU-carruselMobile.webp");
     background-size: cover;
     background-position: center;
     background-color: #000;
@@ -474,7 +474,7 @@ input:focus::placeholder {
         flex: 1;
         padding: 20px;
         min-width: auto;
-        background-image: url(../imagenes/ASU-carruselMobile.webp);
+    background-image: url("./imagenes/ASU-carruselMobile.webp");
         background-size: cover;
         background-position: center;
         border-radius: 0;
